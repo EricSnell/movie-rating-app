@@ -1,20 +1,27 @@
-# COMPONENTS
+# REACT COMPONENTS
 
--[] Navigation      -->   Holds link to Home, a search field for movies, a link to users User page
+### Login Overlay
+-[] LoginOverlay     ->    Displays welcome message, text input for username/password, button to log in/register, and option to just browse
 
--[] Home            -->   Displays List of most recent Movies populated by API call as links to MovieContainer
+### Top Five Overlay
+-[] TopFiveOverlay   ->    5 Text inputs, Submit button
 
--[] MovieContainer  -->   Title of movie, it's poster image, it's overview and list of Reviews components
--[] Reviews          -->   StarRater static component, reviewer info from database
+### Navigation bar
+-[] Navigation       ->    Holds link to Home, a search field for movies, a link to users User page
+
+### Home Page (movie list)
+-[] Home             ->    Displays List of most recent Movies populated by API call as links to MovieContainer
+
+### Individual Movie Page
+-[] MovieContainer   ->    Title of movie, it's poster image, it's overview and list of Reviews components
+-[] Reviews          ->   StarRater static component, reviewer info from database
 -[] UserReviewContainer -> Contains StarRater component and input for written review for user to submit
--[] StarRater        -->   Displays clickable stars (may not need, installed module instead)
+-[] StarRater        ->   Displays clickable stars (may not need, installed module instead)
 
--[] UserContainer   -->   Displays username, users top 5 movies as links to movie pages, and UserReview component
--[] UserReview      -->   Displays users list of reviews for movies, with static StarRater, image of movie that links to it's movie page, and written review
+### User Profile Page
+-[] UserContainer    ->   Displays username, users top 5 movies as links to movie pages, and UserReview component
+-[] UserReview       ->   Displays users list of reviews for movies, with static StarRater, image of movie that links to it's movie page, and written review
 
--[] LoginOverlay    -->   Displays welcome message, text input for username/password, button to log in/register, and option to just browse
-
--[] TopFiveOverlay  -->   5 Text inputs, Submit button
 
 
 # STATE

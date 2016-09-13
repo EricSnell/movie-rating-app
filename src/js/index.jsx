@@ -9,12 +9,13 @@ import store from './redux/store'
 // import LoginOverlay from './components/LoginOverlay'
 // import TopFiveOverlay from './components/TopFiveOverlay'
 // import Home from './components/Home'
-import MovieContainer from './components/MovieContainer'
+// import MovieContainer from './components/MovieContainer'
+import UserContainer from './components/UserContainer'
 
 document.addEventListener('DOMContentLoaded', () => {
 	ReactDOM.render(
 		<Provider store={store}>
-      <MovieContainer />
+      <UserContainer />
 		</Provider>, document.getElementById('app')
 	)
 })

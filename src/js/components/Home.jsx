@@ -5,12 +5,17 @@ import * as actions from '../redux/actions'
 class Home extends React.Component {
   constructor(props) {
     super(props)
-    this.getMovies = this.getMovies.bind(this)
+    this.findMovie = this.findMovie.bind(this)
   }
 
-  getMovies() {
-  // TODO: dispatch fetch action for list of most recent movies and set as state
+  componentDidMount() {
+    // TODO: Dispatch action (fetchNewMovies) to make API GET request for recent movie titles
+    
+  }
 
+  findMovie() {
+    // TODO: Dispatch action (fetchMovieTitle) to make API GET request for movie title
+    let movieSearch = this.refs.movieSearch.value
   }
 
   render() {
@@ -20,6 +25,8 @@ class Home extends React.Component {
 
     return (
       <div>
+        <input type="text" ref="movieSearch" placeholder="Movie Title" />
+        <button onClick={this.findMovie}>Search</button>
         <h1>Recent Titles</h1>
         <ul>
           {movies}

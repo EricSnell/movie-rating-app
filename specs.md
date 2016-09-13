@@ -14,14 +14,14 @@
 
 ## Navigation Bar
   1. Logo / Name of app links to Home Page
-  2. Text / Search field for movie names
-  3. Button to make api call for movie title
-  4. Link to User's Page (if not a user, links to Log In Overlay)
+  2. Link to User's Page (if not a user, links to Log In Overlay)
 
 ## Home Page
-  1. Displays list of movies (arranged by release date)
-  2. Use movie poster image as the display
-  3. Movie image acts as a link to the Movie Page
+  1. Text / Search field for movie names
+  2. Button to make api request for movie title
+  3. Initially displays list of movies (arranged by release date)
+  4. Use movie poster image as the display
+  5. Movie image acts as a link to the Movie Page
 
 ## Movie Page
   1. Displays name, poster image, and overview of the movie
@@ -59,7 +59,7 @@
 
 /*------------ BACK END --------------*/
 
-# PostgreSQL
+# Using PostgreSQL
 
 ## API
   * The Movie DB

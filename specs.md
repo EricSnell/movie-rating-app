@@ -52,6 +52,10 @@
   4. Button to submit data to the database
 
 
+## StarRater
+  * Change icon to a burnt marshmallow
+
+
 
 /*------------ BACK END --------------*/
 

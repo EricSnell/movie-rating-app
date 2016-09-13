@@ -1,13 +1,13 @@
 # COMPONENTS
 
--[] Navigation      -->   Holds link to Home, search field, link to User page
--[] Home            -->   Displays List of Movies populated by backend as links to MovieContainer
+-[] Navigation      -->   Holds link to Home, a search field for movies, a link to users User page
 
--[] MovieContainer  -->   Movie title, poster image, overview and Review component
--[] Review          -->   StarRater static component, reviewer info from database
--[] UserReviewContainer
--[] StarRater       -->   Displays clickable stars (install module)
--[] ReviewText      -->   Contains form for user to enter text and submit to database
+-[] Home            -->   Displays List of most recent Movies populated by API call as links to MovieContainer
+
+-[] MovieContainer  -->   Title of movie, it's poster image, it's overview and list of Reviews components
+-[] Reviews          -->   StarRater static component, reviewer info from database
+-[] UserReviewContainer -> Contains StarRater component and input for written review for user to submit
+-[] StarRater        -->   Displays clickable stars (may not need, installed module instead)
 
 -[] UserContainer   -->   Displays username, users top 5 movies as links to movie pages, and UserReview component
 -[] UserReview      -->   Displays users list of reviews for movies, with static StarRater, image of movie that links to it's movie page, and written review
@@ -19,7 +19,7 @@
 
 # STATE
 
-loggedIn        = boolean: if false, hide UserReviewContainer. Navigation User page link displays LoginOverlay
+loggedIn        = boolean: if false, hide UserReviewContainer (can't submit reviews unless a user). Navigation bar User page link displays LoginOverlay
 loginOverlay    = boolean: if false, hides overlay. If true, shows overlay
 movieName       = (String) for Movie Page
 movieImage      = (String) for Movie Page

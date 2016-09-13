@@ -20,7 +20,7 @@ class LoginOverlay extends React.Component {
 
     return (
       <div className={classes}>
-        <h1>Welcome to Burnt Marshmellows!</h1>
+        <h1>Welcome to Burnt Marshmallows</h1>
         <input type="text" ref="userName" placeholder="Username" />
         <input type="submit" onClick={this.getUser} />
         // TODO: add Link to skip login/registration straight to Home page

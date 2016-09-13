@@ -11,7 +11,18 @@ class Navigation extends React.Component {
 
   render() {
     return (
-
+      <ul className="nav-bar">
+        <li>
+          <a>Logo</a>
+        </li>
+        <li className="search-bar">
+          <input type="text" ref="movieSearch" placeholder="Movie Title" />
+          <button onClick={this.findMovie}>Search</button>
+        </li>
+        <li>
+          <a>My Profile</a>
+        </li>
+      </ul>
     )
   }
 }

@@ -15,7 +15,10 @@
 ### Individual Movie Page
 -[] MovieContainer   ->    Title of movie, it's poster image, it's overview and list of Reviews components
 -[] Reviews          ->   StarRater static component, reviewer info from database
--[] UserReviewContainer -> Contains StarRater component and input for written review for user to submit
+-[] UserReviewContainer -> Contains StarRatingComponent component and input for written review for user to submit
+
+### StarRatingComponent package information
+*< https://www.npmjs.com/package/react-star-rating-component >*
 
 ### User Profile Page
 -[] UserContainer    ->   Displays username, users top 5 movies as links to movie pages, list of users reviews

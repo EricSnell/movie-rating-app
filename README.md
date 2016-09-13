@@ -1,7 +1,7 @@
 # Movie Rating App
 
 ## Description
-  A web app that allows users to rate and review movies. It is designed to take some of the anonymity out of movie reviews, by seeing more information related to the user. This will include the users top five movies from each genre, as well as how much they enjoy each genre. This way, people can get a better idea of the reviewers taste and if they are similar to their own.
+  A web app that allows users to rate and review movies. It is designed to take some of the anonymity out of movie reviews, by seeing more information related to the user. This will include the users top five favorite movies, as well as how they reviewed other movies. This way people can get a better idea of the reviewers taste and if they are similar to their own.
 
 
 ## Setting up the database and backend server.

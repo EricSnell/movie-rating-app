@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ========== STATE =================
 
 loggedIn        = boolean: if false, hide UserReviewContainer. Navigation User page link displays LoginOverlay
+loginOverlay    = boolean: if false, hides overlay. If true, shows overlay
 movieName       = (String) for Movie Page
 movieImage      = (String) for Movie Page
 movieOverview   = (String) for Movie Page

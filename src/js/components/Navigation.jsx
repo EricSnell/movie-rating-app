@@ -5,11 +5,19 @@ import { connect } from 'react-redux'
 class Navigation extends React.Component {
   constructor(props) {
     super(props)
+    this.findMovie = this.findMovie.bind(this)
+  }
+
+  findMovie() {
+    // TODO: Dispatch action to make API GET request for movie title
+    let movieSearch = this.refs.movieSearch.value
 
   }
 
-
   render() {
+    // TODO: If user is logged in (loggedIn = true), 'My Profile' links to
+    // users profile page. If not (loggedIn = false), displays LogInOverlay (LogInOverlay = true)
+
     return (
       <ul className="nav-bar">
         <li>
@@ -29,7 +37,7 @@ class Navigation extends React.Component {
 
 var mapStateToProps = (state, props) => {
   return {
-    // TODO: state
+    loggedIn: state.loggedIn
   }
 }
 

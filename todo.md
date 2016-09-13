@@ -16,11 +16,9 @@
 -[] MovieContainer   ->    Title of movie, it's poster image, it's overview and list of Reviews components
 -[] Reviews          ->   StarRater static component, reviewer info from database
 -[] UserReviewContainer -> Contains StarRater component and input for written review for user to submit
--[] StarRater        ->   Displays clickable stars (may not need, installed module instead)
 
 ### User Profile Page
--[] UserContainer    ->   Displays username, users top 5 movies as links to movie pages, and UserReview component
--[] UserReview       ->   Displays users list of reviews for movies, with static StarRater, image of movie that links to it's movie page, and written review
+-[] UserContainer    ->   Displays username, users top 5 movies as links to movie pages, list of users reviews
 
 
 

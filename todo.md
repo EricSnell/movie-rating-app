@@ -1,31 +1,34 @@
 # REACT COMPONENTS
 
 ### Login Overlay
--[] LoginOverlay     ->    Displays welcome message, text input for username/password, button to log in/register, and option to just browse
+-[x] LoginOverlay     ->    Displays welcome message, text input for username, button to log in/register, and option to just browse
 
 ### Top Five Overlay
--[] TopFiveOverlay   ->    5 Text inputs, Submit button
+-[x] TopFiveOverlay   ->    5 Text inputs, Submit button
 
 ### Navigation bar
--[] Navigation       ->    Holds link to Home, a search field for movies, a link to users User page
+-[x] Navigation       ->    Holds link to Home and a link to users User page
 
 ### Home Page (movie list)
--[] Home             ->    Displays List of most recent Movies populated by API call as links to MovieContainer
+-[x] Home             ->    Displays a search field and list of most recent Movies as links to the Movie Page populated  
 
 ### Individual Movie Page
--[] MovieContainer   ->    Title of movie, it's poster image, it's overview and list of Reviews components
--[] Reviews          ->   StarRater static component, reviewer info from database
--[] UserReviewContainer -> Contains StarRatingComponent component and input for written review for user to submit
+-[x] MovieContainer   ->    Title of movie, it's poster image, it's overview and list of Reviews components
+-[x] Reviews          ->   StarRater static component, reviewer info from database
+-[x] UserReviewContainer -> Contains StarRatingComponent component and input for written review for user to submit
 
 ### StarRatingComponent package information
 *< https://www.npmjs.com/package/react-star-rating-component >*
 
 ### User Profile Page
--[] UserContainer    ->   Displays username, users top 5 movies as links to movie pages, list of users reviews
+-[x] UserContainer    ->   Displays username, users top 5 movies as links to movie pages, list of users reviews
 
 
 
-# STATE
+# STATE         
+
+userId          = (String) ID of logged in user
+movieId         = (String) Returned ID of found movie
 
 loggedIn        = boolean: if false, hide UserReviewContainer (can't submit reviews unless a user). Navigation bar User page link displays LoginOverlay
 loginOverlay    = boolean: if false, hides overlay. If true, shows overlay
@@ -44,20 +47,20 @@ usersReviews    = (Array of Objects) for User Page
 
 
 
-# ACTIONS
+# ACTIONS                 : COMPONENTS TO DISPATCH
 
 ### Fetch actions
   * Add new user          : LogInOverlay
-  * Retrieve user         : LogInOverlay
   * Add favorites         : TopFiveOverlay
+  * Add review            : Movie Page
+  * Get user              : LogInOverlay, Movie Page
   * Get Recent movies(API): Home
   * Find movie(API)       : Home
   * Get Movie info(API)   : Home, Movie Page, User Page
-  * Get User info         : Movie Page
 
 
 
 ### Actions
-  * Toggle LogInOverlay : LogInOverlay, Navigation
-  * Toggle Top5Overlay  : LogInOverlay, TopFiveOverlay
-  * Star rating         : UserReviewContainer
+  * Toggle LogInOverlay   : LogInOverlay, Navigation
+  * Toggle Top5Overlay    : LogInOverlay, TopFiveOverlay
+  * Star rating           : UserReviewContainer

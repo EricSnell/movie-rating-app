@@ -9,19 +9,19 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    // TODO: Dispatch action (fetchNewMovies) to make API GET request for recent movie titles
-    
+  //  this.props.dispatch(actions.fetchRecentMovies())
   }
 
   findMovie() {
-    // TODO: Dispatch action (fetchMovieTitle) to make API GET request for movie title
+    //Dispatch action (fetchMovieInfo) to make API GET request for movie title
     let movieSearch = this.refs.movieSearch.value
+    this.props.dispatch(actions.fetchFindMovie(movieSearch))
   }
 
   render() {
-    let movies;
+    let movies
     // Loop through movie title/poster state (object.keys, .map) and return <li>
-    // of movie poster as a link to Movie Page
+    // of movie poster as a link to MovieContainer
 
     return (
       <div>
@@ -37,9 +37,7 @@ class Home extends React.Component {
 }
 
 var mapStateToProps = (state, props) => {
-  return {
-    // TODO: state
-  }
+  return {}
 }
 
 export default connect(mapStateToProps)(Home)

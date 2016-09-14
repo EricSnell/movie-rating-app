@@ -10,14 +10,17 @@ class MovieContainer extends React.Component {
 
   }
 
+  componentDidMount() {
+    // TODO: Dispatch action to fetch for reviews by movie id/name
+  }
 
   render() {
     return(
       <div>
-        <h1>Movie Name</h1>
-        <h2>Image of Movie</h2>
+        <h1>{this.props.movieName}</h1>
+        <img src={this.props.movieImage} alt={this.props.movieName + " poster"} />
         <h3>Overview</h3>
-        <p>Short movie description</p>
+        <p>{this.props.movieOverview}</p>
 
         <Reviews />
         <UserReviewContainer />
@@ -28,7 +31,12 @@ class MovieContainer extends React.Component {
 
 var mapStateToProps = (state, props) => {
   return {
-    // TODO: state
+    movieId: state.movieId,
+    movieName: state.movieName,
+    movieImage: state.movieImage,
+    movieOverview: state.movieOverview,
+    movieReviews: state.movieReviews,
+
   }
 }
 

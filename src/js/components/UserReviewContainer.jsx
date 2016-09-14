@@ -11,19 +11,26 @@ class UserReviewContainer extends React.Component {
   }
 
   onStarClick(nextValue, prevValue, name) {
-    // TODO: dispatch action to set state of rating (integer)
+    this.props.dispatch(actions.starRating(nextValue))
   }
 
   submitReview() {
-    // TODO: dispatch action to submit user review (rating and text review)
+    // TODO: add movieId (state) and userId (state) to dispatch parameters
     let userReview = this.refs.userReview.value
+    this.props.dispatch(actions.fetchAddReview(this.props.rating, userReview))
   }
 
   render() {
+    let classes = "user-review-container "
+    if (!this.props.loggedIn) {
+      classes += "hidden"
+    }
+
+    const rate = this.props.rating
     return (
-      <div>
+      <div className={classes}>
         <h4>Rate It:</h4>
-        <StarRatingComponent name="rate2" starCount={5} onStarClick={this.onStarClick.bind(this)} />
+        <StarRatingComponent name="rate2" starCount={5} value={rate} onStarClick={this.onStarClick.bind(this)} />
         <h4>Your review:</h4>
         <textarea type="text" rows="5" cols="50" ref="userReview" />
         <button onClick={this.submitReview}>Submit</button>
@@ -34,7 +41,8 @@ class UserReviewContainer extends React.Component {
 
 var mapStateToProps = (state, props) => {
   return {
-    // TODO: state
+    rating: state.starRating,
+    loggedIn: state.loggedIn
   }
 }
 

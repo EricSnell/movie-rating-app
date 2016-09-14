@@ -27,23 +27,28 @@
 
 # STATE         
 
-userId          = (String) ID of logged in user
-movieId         = (String) Returned ID of found movie
+loggedIn        = (Boolean) for Navigation and UserReviewContainer
 
-loggedIn        = boolean: if false, hide UserReviewContainer (can't submit reviews unless a user). Navigation bar User page link displays LoginOverlay
-loginOverlay    = boolean: if false, hides overlay. If true, shows overlay
-TopFiveOverlay  = boolean
+mainUserId      = (String) for Navigation (logged in user)
+mainUsername    = (String) for UserContainer (logged in user)
+mainUserFavorits= (Array of Strings) for UserContainer (logged in user)
+mainUserReviews = (Array of Object) for UserContainer (logged in user)
 
-movieName       = (String) for Movie Page
-movieImage      = (String) for Movie Page
-movieOverview   = (String) for Movie Page
-movieReviews    = (Array of Objects) for Movie Page
+loginOverlay    = (Boolean) for display of overlay
+TopFiveOverlay  = (Boolean) for display of overlay
+
+movieId         = (String) for MovieContainer
+movieName       = (String) for MovieContainer
+movieImage      = (String) for MovieContainer
+movieOverview   = (String) for MovieContainer
+movieReviews    = (Array of Objects) for MovieContainer
 
 starRating      = (Int) for UserReviewContainer
 
-username        = (String) for User Page
-usersTop5       = (Array of Strings) for User Page
-usersReviews    = (Array of Objects) for User Page
+userId          = (String) for UserContainer
+username        = (String) for UserContainer
+usersTop5       = (Array of Strings) for UserContainer
+usersReviews    = (Array of Objects) for UserContainer
 
 
 
@@ -52,11 +57,12 @@ usersReviews    = (Array of Objects) for User Page
 ### Fetch actions
   * Add new user          : LogInOverlay
   * Add favorites         : TopFiveOverlay
-  * Add review            : Movie Page
-  * Get user              : LogInOverlay, Movie Page
+  * Get reviews           : MovieContainer
+  * Add review            : UserReviewContainer
+  * Get user              : LogInOverlay, MovieContainer
   * Get Recent movies(API): Home
   * Find movie(API)       : Home
-  * Get Movie info(API)   : Home, Movie Page, User Page
+  * Get Movie info(API)   : Home, MovieContainer, UserContainer
 
 
 

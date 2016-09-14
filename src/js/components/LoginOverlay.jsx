@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
+import { Link } from 'react-router'
 
 class LoginOverlay extends React.Component {
   constructor(props) {
@@ -9,21 +10,23 @@ class LoginOverlay extends React.Component {
   }
 
   getUser() {
-    // TODO: dispatch action to retrieve/add user
     const userName = this.refs.userName.value
-
+    this.props.dispatch(actions.fetchAddUser(userName))
   }
 
   render() {
-    // TODO: if loginDisplay state is false, add 'hidden' class
     let classes = 'loginOverlay '
+    if (!this.props.loginOverlay) {
+      classes += "hidden"
+    }
 
+    // TODO: add Link to skip login/registration straight to Home page
     return (
       <div className={classes}>
         <h1>Welcome to Burnt Marshmallows</h1>
         <input type="text" ref="userName" placeholder="Username" />
         <input type="submit" onClick={this.getUser} />
-        // TODO: add Link to skip login/registration straight to Home page
+        <Link>Just Browsing</Link>
       </div>
     )
   }
@@ -31,7 +34,7 @@ class LoginOverlay extends React.Component {
 
 var mapStateToProps = (state, props) => {
   return {
-    // TODO: state for loginOverlay
+    loginOverlay: state.loginOverlay
   }
 }
 

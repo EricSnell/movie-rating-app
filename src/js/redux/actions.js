@@ -115,6 +115,10 @@ export var fetchUser = (username) => {
 
 }
 
+// Get Reviews for Movie
+export var fetchMovieReviews = (movieId) => {
+
+}
 
 
 /*----------- API ACTIONS -----------*/
@@ -127,7 +131,7 @@ const key = '415baa6d5ed6520aa2b2f22827e5db1d'
 
 // Get List of Recent Movies (12)
 export var fetchRecentMovies = () => {
-
+// TODO: create success and error actions
 }
 
 // Get Movie Info (returns Title, ID, Poster Image, Overview)
@@ -137,7 +141,7 @@ export var fetchMovieInfo = (movieId) => {
 
 // Find Movie
 export var fetchFindMovie = (userInput) => {
-
+// TODO: create success and error actions
 }
 
 
@@ -205,9 +209,10 @@ export var fetchAddFavoritesError = (favorites, error) => {
 }
 
 export const FETCH_ADD_REVIEW_SUCCESS = 'FETCH_ADD_REVIEW_SUCCESS'
-export var fetchAddReviewSuccess = () => {
+export var fetchAddReviewSuccess = (userReviews) => {
   return {
-    type: FETCH_ADD_REVIEW_SUCCESS
+    type: FETCH_ADD_REVIEW_SUCCESS,
+    reviews: userReviews
   }
 }
 
@@ -217,14 +222,16 @@ export var fetchAddReviewError = (error) => {
     type: FETCH_ADD_REVIEW_ERROR,
     error: error
   }
+}
 
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
-export var fetchUserSuccess = (username, usersFavorites, usersReviews) => {
+export var fetchUserSuccess = (userId, username, usersFavorites, usersReviews) => {
   return {
     type: FETCH_USER_SUCCESS,
+    id: userId,
     username: username,
-    usersFavorites: usersFavorites,
-    usersReviews: usersReviews
+    favorites: usersFavorites,
+    reviews: usersReviews
   }
 }
 
@@ -232,6 +239,44 @@ export const FETCH_USER_ERROR = 'FETCH_USER_ERROR';
 export var fetchUserError = (error) => {
   return {
     type: FETCH_USER_ERROR,
+    error: error
+  }
+}
+
+export const FETCH_REVIEWS_SUCCESS = 'FETCH_REVIEWS_SUCCESS'
+export var fetchReviewsSuccess = (movieId, reviews) => {
+  return {
+    type: FETCH_REVIEWS_SUCCESS,
+    movieId: movieId,
+    reviews: reviews
+  }
+}
+
+export const FETCH_REVIEWS_ERROR = 'FETCH_REVIEWS_ERROR'
+export var fetchReviewsError = (movieId, error) => {
+  return {
+    type: FETCH_REVIEWS_ERROR,
+    movieId: movieId,
+    error: error
+  }
+}
+
+export const FETCH_MOVIE_INFO_SUCCESS = 'FETCH_MOVIE_INFO_SUCCESS'
+export var fetchMovieInfoSuccess = (movieId, movieName, movieImage, movieOverview) => {
+  return {
+    type: FETCH_MOVIE_INFO_SUCCESS,
+    id: movieId,
+    title: movieName,
+    image: movieImage,
+    overview: movieOverview
+  }
+}
+
+export const FETCH_MOVIE_INFO_ERROR = 'FETCH_MOVIE_INFO_ERROR'
+export var fetchMovieInfoError = (userInput, error) => {
+  return {
+    type: FETCH_MOVIE_INFO_ERROR,
+    userInput: userInput,
     error: error
   }
 }

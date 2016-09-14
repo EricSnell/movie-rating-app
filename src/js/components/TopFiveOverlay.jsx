@@ -9,15 +9,13 @@ class TopFiveOverlay extends React.Component {
   }
 
   submitTopFive() {
-    // TODO: dispatch action to submit form data and hide topFiverOverlay
+    //Dispatch action to submit form data and add favorites for users
+    this.props.dispatch(actions.fetchAddFavorites())
   }
 
   render() {
-    // TODO: if topFiveDisplay state is false, add 'hidden' class
-    let classes = 'topFiverOverlay '
-
     return (
-      <div className={classes}>
+      <div>
         <h1>Your Top 5 Favorite Movies</h1>
         <form>
           <input type="text" name="movie_1" placeholder="Jurassic Park"></input>
@@ -33,9 +31,7 @@ class TopFiveOverlay extends React.Component {
 }
 
 var mapStateToProps = (state, props) => {
-  return {
-    // TODO: add state
-  }
+  return {}
 }
 
 export default connect(mapStateToProps)(TopFiveOverlay)

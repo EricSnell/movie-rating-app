@@ -14,8 +14,14 @@ class TopFiveOverlay extends React.Component {
   }
 
   render() {
+    console.log(this.props)
+    let classes = "top-five-overlay "
+    if (!this.props.topFiveOverlay) {
+      classes += "hidden"
+    }
+
     return (
-      <div>
+      <div className={classes}>
         <h1>Your Top 5 Favorite Movies</h1>
         <form>
           <input type="text" name="movie_1" placeholder="Jurassic Park"></input>
@@ -31,7 +37,9 @@ class TopFiveOverlay extends React.Component {
 }
 
 var mapStateToProps = (state, props) => {
-  return {}
+  return {
+    topFiveOverlay: state.topFiveOverlay
+  }
 }
 
 export default connect(mapStateToProps)(TopFiveOverlay)

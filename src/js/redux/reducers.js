@@ -6,7 +6,7 @@ const initialState = {
   mainUsername: "",
   mainUserFavorites: [],
   mainUserReviews: [],
-  loginOverlay: true,
+  loginOverlay: false,
   topFiveOverlay: false,
   movieId: "",
   movieName: "",
@@ -57,7 +57,8 @@ var AppReducer = (state, action) => {
     })
   } else if (action.type === actions.FETCH_ADD_FAVORITES_SUCCESS) {
     return Object.assign({}, state, {
-      mainUserFavorites: action.favorites
+      mainUserFavorites: action.favorites,
+      topFiverOverlay: false
     })
   } else if (action.type === actions.FETCH_ADD_REVIEW_SUCCESS) {
     return Object.assign({}, state, {

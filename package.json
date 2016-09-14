@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register test/**/*.js*",
+    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
     "mkdir": "mkdir -p build",
     "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:css && npm run build:js",
     "serve": "node server.js",
@@ -51,6 +52,8 @@
     "babel-register": "^6.14.0",
     "chokidar-cli": "^1.2.0",
     "http-server": "^0.9.0",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.14.1",
+    "redux-logger": "^2.6.1"
   }
 }

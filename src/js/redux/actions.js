@@ -132,10 +132,30 @@ const key = '415baa6d5ed6520aa2b2f22827e5db1d'
 // Get List of Recent Movies (12)
 export var fetchRecentMovies = () => {
 // TODO: create success and error actions
+return (dispatch) => {
+    let url = 'http://api.themoviedb.org/3/movie/popular?api_key=415baa6d5ed6520aa2b2f22827e5db1d';
+    return fetch(url).then((res) => {
+      if (res.status < 200 || res.status >= 300) {
+        let error = new Error(res.statusText);
+        error.response = res;
+        throw error;
+      }
+      return res.json();
+    }).then((movies) => {
+      console.log(movies)
+      // return dispatch (
+      //   getBookmarksSuccess(bookmarks)
+      // );
+    }).catch((error) => {
+      // return dispatch(
+      //   getBookmarksError(error)
+      // );
+    });
+  };
 }
 
 // Get Movie Info (returns Title, ID, Poster Image, Overview)
-export var fetchMovieInfo = (movieId) => {
+export const fetchMovieInfo = (movieId) => {
 
 }
 
@@ -144,6 +164,28 @@ export var fetchFindMovie = (userInput) => {
 // TODO: create success and error actions
 }
 
+export const fetchMoviePosterBaseURL = () => {
+  return (dispatch) => {
+      let url = 'http://api.themoviedb.org/3/configuration?api_key=415baa6d5ed6520aa2b2f22827e5db1d';
+      return fetch(url).then((res) => {
+        if (res.status < 200 || res.status >= 300) {
+          let error = new Error(res.statusText);
+          error.response = res;
+          throw error;
+        }
+        return res.json();
+      }).then((config) => {
+        console.log(config)
+        // return dispatch (
+        //   getBookmarksSuccess(bookmarks)
+        // );
+      }).catch((error) => {
+        // return dispatch(
+        //   getBookmarksError(error)
+        // );
+      });
+    };
+}
 
 
 /*------------- ACTIONS -------------*/

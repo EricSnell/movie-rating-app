@@ -11,7 +11,7 @@ class Home extends React.Component {
   componentDidMount() {
   // Dispatches fetch action to API for list or recent movies
   // TODO: create functionality for fetchRecentMovies in /actions
-  //  this.props.dispatch(actions.fetchRecentMovies())
+   this.props.dispatch(actions.fetchRecentMovies())
   }
 
   findMovie() {

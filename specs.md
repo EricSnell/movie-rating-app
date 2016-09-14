@@ -59,7 +59,7 @@
 
 /*------------ BACK END --------------*/
 
-# Using PostgreSQL
+# Using PostgreSQL / Knex
 
 ## API
   * The Movie DB
@@ -68,8 +68,15 @@
     1. *< http://docs.themoviedb.apiary.io/# >*
     2. *< https://www.themoviedb.org/documentation/api >*
 
-# Each User Will Have:
-  * Username
-  * Password
-  * 5 favorite movies
-  * Ratings (a value of 1 - 5) and written review for a movie
+# Each User in DB Will Have:
+  * id    
+  * username  
+  * favorites  
+  * reviews
+
+# Each Movie Reviewed in DB Will Have:
+  * id
+  * title
+  * image
+  * overview
+  * reviews

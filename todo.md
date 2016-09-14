@@ -29,9 +29,35 @@
 
 loggedIn        = boolean: if false, hide UserReviewContainer (can't submit reviews unless a user). Navigation bar User page link displays LoginOverlay
 loginOverlay    = boolean: if false, hides overlay. If true, shows overlay
+TopFiveOverlay  = boolean
+
 movieName       = (String) for Movie Page
 movieImage      = (String) for Movie Page
 movieOverview   = (String) for Movie Page
-userStars       = (Int) for Movie Page
-usernameDisplay = (String) for User Page
-topFiveDisplay  = (Array of Strings) for User Page
+movieReviews    = (Array of Objects) for Movie Page
+
+starRating      = (Int) for UserReviewContainer
+
+username        = (String) for User Page
+usersTop5       = (Array of Strings) for User Page
+usersReviews    = (Array of Objects) for User Page
+
+
+
+# ACTIONS
+
+### Fetch actions
+  * Add new user          : LogInOverlay
+  * Retrieve user         : LogInOverlay
+  * Add favorites         : TopFiveOverlay
+  * Get Recent movies(API): Home
+  * Find movie(API)       : Home
+  * Get Movie info(API)   : Home, Movie Page, User Page
+  * Get User info         : Movie Page
+
+
+
+### Actions
+  * Toggle LogInOverlay : LogInOverlay, Navigation
+  * Toggle Top5Overlay  : LogInOverlay, TopFiveOverlay
+  * Star rating         : UserReviewContainer

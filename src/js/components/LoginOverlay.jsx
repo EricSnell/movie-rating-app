@@ -7,26 +7,33 @@ class LoginOverlay extends React.Component {
   constructor(props) {
     super(props)
     this.getUser = this.getUser.bind(this)
+    this.skipLogin = this.skipLogin.bind(this)
   }
 
+  // Adds or retrieves user from the database
   getUser() {
     const userName = this.refs.userName.value
     this.props.dispatch(actions.fetchAddUser(userName))
   }
 
+  // Allows user to skip login/registration
+  skipLogin() {
+    this.props.dispatch(actions.toggleLoginOverlay())
+  }
+
   render() {
+    // Only shows overlay when Home component mounts or when 'Sign Up' clicked in Navigation, otherwise hidden
     let classes = 'loginOverlay '
     if (!this.props.loginOverlay) {
       classes += "hidden"
     }
 
-    // TODO: add Link to skip login/registration straight to Home page
     return (
       <div className={classes}>
         <h1>Welcome to Burnt Marshmallows</h1>
         <input type="text" ref="userName" placeholder="Username" />
         <input type="submit" onClick={this.getUser} />
-        <Link>Just Browsing</Link>
+        <button onClick={this.skipLogin}>Just Browsing</button>
       </div>
     )
   }

@@ -3,8 +3,8 @@ import StarRatingComponent from 'react-star-rating-component'
 
 class Reviews extends React.Component {
 
-  // StarRatingComponents 'value' property refers to users rating
-  // StarRatingComponents 'editing' set to false to keep static
+  // StarRatingComponents 'value' property refers to users stored rating of movie
+  // StarRatingComponents 'editing' set to false so it's uneditable
 
   render() {
     return (

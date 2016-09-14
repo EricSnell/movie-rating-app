@@ -148,6 +148,7 @@ export var fetchFindMovie = (userInput) => {
 
 /*------------- ACTIONS -------------*/
 
+// Toggles the display of the Login Overlay
 export const TOGGLE_LOGIN_OVERLAY = 'TOGGLE_LOGIN_OVERLAY'
 export var toggleLoginOverlay = () => {
   return {
@@ -155,6 +156,7 @@ export var toggleLoginOverlay = () => {
   }
 }
 
+// Toggles the display of the Top Five Overlay
 export const TOGGLE_TOP5_OVERLAY = 'TOGGLE_TOP5_OVERLAY'
 export var toggleTop5Overlay = () => {
   return {
@@ -162,6 +164,7 @@ export var toggleTop5Overlay = () => {
   }
 }
 
+// Sets star rating that user gives to a movie
 export const STAR_RATING = 'STAR_RATING'
 export var starRating = (rating) => {
   return {

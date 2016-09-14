@@ -53,7 +53,7 @@ var AppReducer = (state, action) => {
       mainUsername: action.username,
       loggedIn: true,
       loginOverlay: false,
-      topFiveOverlay: true,
+      topFiveOverlay: mainUserFavorites ? false : true
     })
   } else if (action.type === actions.FETCH_ADD_FAVORITES_SUCCESS) {
     return Object.assign({}, state, {

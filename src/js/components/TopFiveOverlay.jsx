@@ -9,12 +9,13 @@ class TopFiveOverlay extends React.Component {
   }
 
   submitTopFive() {
-    //Dispatch action to submit form data and add favorites for users
+    //Dispatches action to submit form and add list of favorites to user
+    // TODO: create functionality for fetchAddFavorites in /actions
     this.props.dispatch(actions.fetchAddFavorites())
   }
 
   render() {
-    console.log(this.props)
+    // Only shows overlay if user just registered (after LogInOverlay), otherwise hidden
     let classes = "top-five-overlay "
     if (!this.props.topFiveOverlay) {
       classes += "hidden"

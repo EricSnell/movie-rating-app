@@ -4,20 +4,28 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 class Navigation extends React.Component {
+  constructor(props) {
+    super(props)
+    this.signUp = this.signUp.bind(this)
+  }
+
+  signUp() {
+    if (!this.props.loggedIn) {
+      this.props.dispatch(actions.toggleLoginOverlay())
+    }
+  }
+
   render() {
-    // TODO: Set up Link route to users profile
+    // TODO: Set up Link route to :userId of logged in user (mainUserId)
     let link = 'Sign Up'
     if (this.props.loggedIn) {
       link = <Link to={'/user'}>My Profile</Link>
-    } else {
-      this.props.dispatch(actions.toggleLoginOverlay())
     }
 
-    // TODO: Set up Link route to Home component
     return (
       <ul className="nav-bar">
         <li><Link to={'/'}>Logo</Link></li>
-        <li>{link}</li>
+        <li onClick={this.signUp}>{link}</li>
       </ul>
     )
   }

@@ -1,7 +1,7 @@
 import * as actions from './actions'
 import { combineReducers } from 'redux';
 
-// The following code use Object Spreaders instead of Object.assign()
+// The following code uses Object Spreaders instead of Object.assign()
 // http://redux.js.org/docs/recipes/UsingObjectSpreadOperator.html
 
 /*
@@ -17,10 +17,11 @@ import { combineReducers } from 'redux';
     baseURL: "",
     posterSize: ""
   },
-  UI: {
+  ui: {
     loggedIn: true,
     loginOverlay: false,
     topFiveOverlay: false,
+    searchText: ''
     starRating: 3
   }
 }
@@ -37,7 +38,8 @@ const mockUI = {
   loggedIn: false,
   loginOverlay: false,
   topFiveOverlay: false,
-  starRating: 3
+  starRating: 3,
+  searchText: ''
 }
 
 const userReducer = (state = mockUser, action) => {
@@ -53,6 +55,13 @@ const userReducer = (state = mockUser, action) => {
       return { ...state, favorites: action.favorites};
     case actions.FETCH_ADD_REVIEW_SUCCESS:
       return { ...state, reviews: action.reviews};
+    case actions.FETCH_USER_SUCCESS:
+      return { ...state,
+        userId: action.id,
+        username: action.username,
+        usersTop5: action.favorites,
+        usersReviews: action.reviews
+      };
     default:
       return state;
     }
@@ -66,6 +75,8 @@ const moviesReducer = (state = {}, action) => {
       return { ...state, movies: action.popularMovies};
     case actions.FETCH_POSTER_BASEURL_SUCCESS:
       return { ...state, baseURL: action.posterBaseURL, posterSize: action.posterSize};
+    case actions.FETCH_FIND_MOVIE_SUCCESS:
+      return { ...state, movies: action.searchResults}
     default:
       return state;
     }
@@ -80,6 +91,8 @@ const uiReducer = (state = mockUI, action) => {
       return { ...state, loginOverlay: !state.loginOverlay};
     case actions.TOGGLE_TOP5_OVERLAY:
       return { ...state, topFiveOverlay: !state.topFiveOverlay};
+    case actions.SEARCH_TEXT_CHANGE:
+      return { ...state, searchText: action.text};
     // Actions are sent to all reducers.
     // This we can effect multiple parts of state.
     // See this discussion for details:
@@ -91,13 +104,8 @@ const uiReducer = (state = mockUI, action) => {
       return { ...state, loggedIn: true, topFiveOverlay: true};
     case actions.FETCH_ADD_FAVORITES_SUCCESS:
       return { ...state, topFiveOverlay: false};
-    case actions.FETCH_USER_SUCCESS:
-        return { ...state,
-          userId: action.id,
-          username: action.username,
-          usersTop5: action.favorites,
-          usersReviews: action.reviews
-        };
+    case actions.FETCH_FIND_MOVIE_SUCCESS:
+      return { ...state, searchText: ''}
     default:
       return state;
     }

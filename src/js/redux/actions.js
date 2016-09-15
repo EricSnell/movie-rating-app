@@ -161,7 +161,7 @@ const fetchpopularMoviesSuccess = (movies) => {
 }
 
 export const FETCH_POPULAR_MOVIES_ERROR = 'FETCH_POPULAR_MOVIES_ERROR'
-const fetchpopularMoviesError = (movies) => {
+const fetchpopularMoviesError = (error) => {
   return {
     type: FETCH_POPULAR_MOVIES_ERROR,
     error
@@ -176,7 +176,41 @@ export const fetchMovieInfo = (movieId) => {
 
 // Find Movie
 export const fetchFindMovie = (userInput) => {
-// TODO: create success and error actions
+  return (dispatch) => {
+      let url = `http://api.themoviedb.org/3/search/movie?api_key=415baa6d5ed6520aa2b2f22827e5db1d&query=${userInput}`;
+      return fetch(url).then((res) => {
+        if (res.status < 200 || res.status >= 300) {
+          let error = new Error(res.statusText);
+          error.response = res;
+          throw error;
+        }
+        return res.json();
+      }).then((response) => {
+        return dispatch (
+          fetchFindMovieSuccess(response.results)
+        );
+      }).catch((error) => {
+        return dispatch(
+          fetchFindMovieError(error)
+        );
+      });
+    };
+}
+
+export const FETCH_FIND_MOVIE_SUCCESS = 'FETCH_FIND_MOVIE_SUCCESS'
+const fetchFindMovieSuccess = (movies) => {
+  return {
+    type: FETCH_FIND_MOVIE_SUCCESS,
+    searchResults: movies
+  };
+}
+
+export const FETCH_FIND_MOVIE_ERROR= 'FETCH_FIND_MOVIE_ERROR'
+const fetchFindMovieError = (error) => {
+  return {
+    type: FETCH_FIND_MOVIE_ERROR,
+    error
+  };
 }
 
 export const fetchPosterBaseURL = () => {
@@ -246,7 +280,13 @@ export var starRating = (rating) => {
   }
 }
 
-
+export const SEARCH_TEXT_CHANGE = 'SEARCH_TEXT_CHANGE'
+export const searchTextChange = (text) => {
+  return {
+    type: SEARCH_TEXT_CHANGE,
+    text: text
+  };
+};
 
 /*--- FETCH SUCCESS / ERROR ACTIONS ---*/
 

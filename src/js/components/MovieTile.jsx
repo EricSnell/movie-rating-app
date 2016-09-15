@@ -5,9 +5,9 @@ class MovieTile extends React.Component {
   render () {
     return (
       // Will route to /Movie/:movieid
-      <div class="col-xs-6 col-md-3">
+      <div className="col-xs-6 col-md-3">
         <Link to={'/movie/' + this.props.movieId}>
-          <div class="thumbnail">
+          <div className="thumbnail">
             <img src={this.props.moviePoster} alt={this.props.title} />
           </div>
         </Link>
@@ -16,4 +16,4 @@ class MovieTile extends React.Component {
   }
 }
 
-exports default Tile;
+export default MovieTile;

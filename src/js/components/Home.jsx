@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
+import MovieTile from './MovieTile'
 
 class Home extends React.Component {
   constructor(props) {
     super(props)
-    this.findMovie = this.findMovie.bind(this)
-    console.log(this.props)
+    this.findMovie = this.findMovie.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
   // Dispatches fetch action to API for list or recent movies
   // TODO: create functionality for fetchpopularMovies in /actions
    this.props.dispatch(actions.fetchpopularMovies())
@@ -22,9 +22,18 @@ class Home extends React.Component {
   }
 
   render() {
-    let movies
     // Loop through movie title/poster state (object.keys, .map) and return <li>
     // of movie poster as a link to MovieContainer
+      let movies
+      let imageURL
+      if(this.props.movies) {
+        imageURL = this.props.baseURL + '/' + this.props.posterSize + '/';
+        movies = this.props.movies.map((movie, index) => {
+          console.log(movie)
+          return <MovieTile key={index} movieId={index} title={movie.title} moviePoster={imageURL + movie.poster_path} />
+        });
+        console.log('movies', movies);
+      }
 
     return (
       <div>
@@ -40,7 +49,11 @@ class Home extends React.Component {
 }
 
 var mapStateToProps = (state, props) => {
-  return {}
-}
+  return {
+    movies: state.movieList.movies,
+    posterSize: state.movieList.posterSize,
+    baseURL: state.movieList.baseURL
+  };
+};
 
 export default connect(mapStateToProps)(Home)

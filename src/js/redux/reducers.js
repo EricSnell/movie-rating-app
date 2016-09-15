@@ -1,6 +1,9 @@
 import * as actions from './actions'
 import { combineReducers } from 'redux';
 
+// The following code use Object Spreaders instead of Object.assign()
+// http://redux.js.org/docs/recipes/UsingObjectSpreadOperator.html
+
 /*
   What the state looks like
   user: {

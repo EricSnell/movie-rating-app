@@ -141,7 +141,6 @@ return (dispatch) => {
       }
       return res.json();
     }).then((response) => {
-      console.log(response)
       return dispatch (
         fetchpopularMoviesSuccess(response.results)
       );
@@ -191,7 +190,6 @@ export const fetchPosterBaseURL = () => {
         }
         return res.json();
       }).then((config) => {
-        console.log(config)
         return dispatch (
           fetchPosterBaseURLSuccess(config.images.base_url, config.images.poster_sizes[4])
         );

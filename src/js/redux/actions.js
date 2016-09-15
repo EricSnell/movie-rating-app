@@ -130,8 +130,7 @@ https://www.themoviedb.org/documentation/api
 const key = '415baa6d5ed6520aa2b2f22827e5db1d'
 
 // Get List of Recent Movies (12)
-export var fetchRecentMovies = () => {
-// TODO: create success and error actions
+export var fetchpopularMovies = () => {
 return (dispatch) => {
     let url = 'http://api.themoviedb.org/3/movie/popular?api_key=415baa6d5ed6520aa2b2f22827e5db1d';
     return fetch(url).then((res) => {
@@ -141,18 +140,35 @@ return (dispatch) => {
         throw error;
       }
       return res.json();
-    }).then((movies) => {
-      console.log(movies)
-      // return dispatch (
-      //   getBookmarksSuccess(bookmarks)
-      // );
+    }).then((response) => {
+      console.log(response)
+      return dispatch (
+        fetchpopularMoviesSuccess(response.results)
+      );
     }).catch((error) => {
-      // return dispatch(
-      //   getBookmarksError(error)
-      // );
+      return dispatch (
+        fetchpopularMoviesError(error)
+      );
     });
   };
 }
+
+export const FETCH_POPULAR_MOVIES_SUCCESS = 'FETCH_POPULAR_MOVIES_SUCCESS'
+const fetchpopularMoviesSuccess = (movies) => {
+  return {
+    type: FETCH_POPULAR_MOVIES_SUCCESS,
+    popularMovies: movies
+  };
+}
+
+export const FETCH_POPULAR_MOVIES_ERROR = 'FETCH_POPULAR_MOVIES_ERROR'
+const fetchpopularMoviesError = (movies) => {
+  return {
+    type: FETCH_POPULAR_MOVIES_ERROR,
+    error
+  };
+}
+
 
 // Get Movie Info (returns Title, ID, Poster Image, Overview)
 export const fetchMovieInfo = (movieId) => {
@@ -160,11 +176,11 @@ export const fetchMovieInfo = (movieId) => {
 }
 
 // Find Movie
-export var fetchFindMovie = (userInput) => {
+export const fetchFindMovie = (userInput) => {
 // TODO: create success and error actions
 }
 
-export const fetchMoviePosterBaseURL = () => {
+export const fetchPosterBaseURL = () => {
   return (dispatch) => {
       let url = 'http://api.themoviedb.org/3/configuration?api_key=415baa6d5ed6520aa2b2f22827e5db1d';
       return fetch(url).then((res) => {
@@ -176,16 +192,33 @@ export const fetchMoviePosterBaseURL = () => {
         return res.json();
       }).then((config) => {
         console.log(config)
-        // return dispatch (
-        //   getBookmarksSuccess(bookmarks)
-        // );
+        return dispatch (
+          fetchPosterBaseURLSuccess(config.images.base_url, config.images.poster_sizes[4])
+        );
       }).catch((error) => {
-        // return dispatch(
-        //   getBookmarksError(error)
-        // );
+        return dispatch(
+          fetchPosterBaseURLError(error)
+        );
       });
     };
 }
+
+export const FETCH_POSTER_BASEURL_SUCCESS = 'POSTER_BASEURL_SUCCESS'
+const fetchPosterBaseURLSuccess = (url, posterSize) => {
+  return {
+    type: FETCH_POSTER_BASEURL_SUCCESS,
+    posterBaseURL: url,
+    posterSize
+  };
+};
+
+export const FETCH_POSTER_BASEURL_ERROR = 'POSTER_BASEURL_ERROR'
+const fetchPosterBaseURLError = (error) => {
+  return {
+    type: FETCH_POSTER_BASEURL_ERROR,
+    error
+  };
+};
 
 
 /*------------- ACTIONS -------------*/

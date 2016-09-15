@@ -1,86 +1,109 @@
 import * as actions from './actions'
+import { combineReducers } from 'redux';
 
-const initialState = {
-  loggedIn: true,
-  mainUserId: "",
-  mainUsername: "",
-  mainUserFavorites: [],
-  mainUserReviews: [],
+/*
+  What the state looks like
+  user: {
+    userId: "",
+    username: "",
+    favorites: [],
+    reviews: []
+  },
+  movieList: {
+    movies: [], // Use for popular movies and add additional information pulled from server
+    baseURL: "",
+    posterSize: ""
+  },
+  UI: {
+    loggedIn: true,
+    loginOverlay: false,
+    topFiveOverlay: false,
+    starRating: 3
+  }
+}
+*/
+
+const mockUser = {
+  userId: 123,
+  username: "Jane Doe",
+  favorites: [],
+  reviews: []
+}
+
+const mockUI = {
+  loggedIn: false,
   loginOverlay: false,
   topFiveOverlay: false,
-  movieId: "",
-  movieName: "",
-  movieImage: "",
-  movieOverview: "",
-  movieReviews: [],
-  starRating: 3,
-  userId: "",
-  username: "",
-  usersTop5: [],
-  usersReviews: []
+  starRating: 3
 }
 
-var AppReducer = (state, action) => {
-  state = state || initialState
-
-  if (action.type === actions.STAR_RATING) {
-    return Object.assign({}, state, {
-      starRating: action.rating
-    })
-  } else if (action.type === actions.TOGGLE_LOGIN_OVERLAY) {
-    if (state.loginOverlay) {
-      return Object.assign({}, state, {
-        loginOverlay: false
-      })
-    } else {
-      return Object.assign({}, state, {
-        loginOverlay: true
-      })
+const userReducer = (state = mockUser, action) => {
+  switch (action.type) {
+    case actions.FETCH_ADD_USER_SUCCESS:
+      return { ...state,
+        userId: action.id,
+        username: action.username,
+      };
+    case actions.FETCH_ADD_FAVORITES_SUCCESS:
+    // @NOTE: This might have to change if favorites can be edited.
+    // This approach will overwrite any perviously stored favorites.
+      return { ...state, favorites: action.favorites};
+    case actions.FETCH_ADD_REVIEW_SUCCESS:
+      return { ...state, reviews: action.reviews};
+    default:
+      return state;
     }
-  } else if (action.type === actions.TOGGLE_TOP5_OVERLAY) {
-    if (state.topFiveOverlay) {
-      return Object.assign({}, state, {
-        topFiveOverlay: false
-      })
-    } else {
-      return Object.assign({}, state, {
-        topFiveOverlay: true
-      })
+  };
+
+const moviesReducer = (state = {}, action) => {
+  // This part of state is an array of movie objects
+  switch (action.type) {
+    case actions.FETCH_POPULAR_MOVIES_SUCCESS:
+      // Overright previous movies array
+      return { ...state, movies: action.popularMovies};
+    case actions.FETCH_POSTER_BASEURL_SUCCESS:
+      return { ...state, baseURL: action.posterBaseURL, posterSize: action.posterSize};
+    default:
+      return state;
     }
-  } else if (action.type === actions.FETCH_ADD_USER_SUCCESS) {
-    return Object.assign({}, state, {
-      mainUserId: action.id,
-      mainUsername: action.username,
-      loggedIn: true,
-      loginOverlay: false,
-      topFiveOverlay: mainUserFavorites ? false : true
-    })
-  } else if (action.type === actions.FETCH_ADD_FAVORITES_SUCCESS) {
-    return Object.assign({}, state, {
-      mainUserFavorites: action.favorites,
-      topFiverOverlay: false
-    })
-  } else if (action.type === actions.FETCH_ADD_REVIEW_SUCCESS) {
-    return Object.assign({}, state, {
-      mainUserReviews: action.reviews
-    })
-  } else if (action.type === actions.FETCH_USER_SUCCESS) {
-    return Object.assign({}, state, {
-      userId: action.id,
-      username: action.username,
-      usersTop5: action.favorites,
-      usersReviews: action.reviews
-    })
-  } else if (action.type === actions.FETCH_MOVIE_INFO_SUCCESS) {
-    return Object.assign({}, state, {
-      movieId: action.id,
-      movieName: action.title,
-      movieImage: action.image,
-      movieOverview: action.overview
-    })
-  }
+  };
 
-  return state
-}
+const uiReducer = (state = mockUI, action) => {
+  switch (action.type) {
+    // This may need to change to a async request because your updating the user
+    case actions.STAR_RATING:
+      return { ...state, starRating: action.rating};
+    case actions.TOGGLE_LOGIN_OVERLAY:
+      return { ...state, loginOverlay: !state.loginOverlay};
+    case actions.TOGGLE_TOP5_OVERLAY:
+      return { ...state, topFiveOverlay: !state.topFiveOverlay};
+    // Actions are sent to all reducers.
+    // This we can effect multiple parts of state.
+    // See this discussion for details:
+    // https://github.com/reactjs/redux/issues/601
+    case actions.FETCH_ADD_USER_SUCCESS:
+      // @TODO: Only toggle topFiveOverlay when use first logs in
+      // @TODO: Convert these to subroutes?
+      // original code: mainUserFavorites ? false : true
+      return { ...state, loggedIn: true, topFiveOverlay: true};
+    case actions.FETCH_ADD_FAVORITES_SUCCESS:
+      return { ...state, topFiveOverlay: false};
+    case actions.FETCH_USER_SUCCESS:
+        return { ...state,
+          userId: action.id,
+          username: action.username,
+          usersTop5: action.favorites,
+          usersReviews: action.reviews
+        };
+    default:
+      return state;
+    }
+  };
 
-export default AppReducer
+const rootReducer = combineReducers({
+  user: userReducer,
+  movieList: moviesReducer,
+  ui: uiReducer,
+});
+
+export default rootReducer

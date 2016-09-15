@@ -8,7 +8,7 @@ import Navigation from './Navigation'
 
 class App extends React.Component {
     componentWillMount() {
-        this.props.dispatch(actions.fetchMoviePosterBaseURL());
+        this.props.dispatch(actions.fetchPosterBaseURL());
     }
     render() {
         return (

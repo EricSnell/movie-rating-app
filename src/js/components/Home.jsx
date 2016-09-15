@@ -6,12 +6,13 @@ class Home extends React.Component {
   constructor(props) {
     super(props)
     this.findMovie = this.findMovie.bind(this)
+    console.log(this.props)
   }
 
   componentDidMount() {
   // Dispatches fetch action to API for list or recent movies
-  // TODO: create functionality for fetchRecentMovies in /actions
-   this.props.dispatch(actions.fetchRecentMovies())
+  // TODO: create functionality for fetchpopularMovies in /actions
+   this.props.dispatch(actions.fetchpopularMovies())
   }
 
   findMovie() {

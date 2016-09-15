@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <Router history={hashHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
-                <Route path="/movie" component={MovieContainer}/>
-                <Route path="/user" component={UserContainer}/>
+                <Route path="/movie/:id" component={MovieContainer}/>
+                <Route path="/user/:id" component={UserContainer}/>
             </Route>
         </Router>
     </Provider>, document.getElementById('app'))

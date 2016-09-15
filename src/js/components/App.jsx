@@ -8,7 +8,10 @@ import Navigation from './Navigation'
 
 class App extends React.Component {
     componentWillMount() {
+      // Dispatches fetch action to API for list of popular movies
+      // The recent movie endpoint only returns one movie.
         this.props.dispatch(actions.fetchPosterBaseURL());
+        this.props.dispatch(actions.fetchpopularMovies());
     }
     render() {
         return (

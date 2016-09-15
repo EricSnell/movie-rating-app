@@ -9,10 +9,8 @@ class Home extends React.Component {
     this.findMovie = this.findMovie.bind(this);
   }
 
-  componentWillMount() {
-  // Dispatches fetch action to API for list or recent movies
-  // TODO: create functionality for fetchpopularMovies in /actions
-   this.props.dispatch(actions.fetchpopularMovies())
+  componentDidMount() {
+
   }
 
   findMovie() {
@@ -22,26 +20,26 @@ class Home extends React.Component {
   }
 
   render() {
-    // Loop through movie title/poster state (object.keys, .map) and return <li>
-    // of movie poster as a link to MovieContainer
+    // Loop through movie array retrieved from API and create seperate
+    // components for each.
       let movies
-      let imageURL
       if(this.props.movies) {
-        imageURL = this.props.baseURL + '/' + this.props.posterSize + '/';
-        movies = this.props.movies.map((movie, index) => {
-          console.log(movie)
-          return <MovieTile key={index} movieId={index} title={movie.title} moviePoster={imageURL + movie.poster_path} />
+        let imageURL = this.props.baseURL + '/' + this.props.posterSize + '/';
+        movies = this.props.movies.map((movie) => {
+          return <MovieTile key={movie.id}
+            movieId={movie.id}
+            title={movie.title}
+            moviePoster={imageURL + movie.poster_path} />
         });
-        console.log('movies', movies);
       }
 
     return (
       <div>
         <input type="text" ref="movieSearch" placeholder="Movie Title" />
         <button onClick={this.findMovie}>Search</button>
-        <h1>Recent Titles</h1>
-        <ul>
-          {movies}
+        <h1 className="text-center" style={{"paddingBottom": "2%"}}>Popular Titles</h1>
+        <ul className="row">
+          {movies || null}
         </ul>
       </div>
     )

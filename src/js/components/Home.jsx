@@ -9,12 +9,6 @@ class Home extends React.Component {
     }
 
     render() {
-
-        // Since this component handles both the popular title view
-        // and the search results. We have to make sure we display the
-        // right set of information.
-        console.log('Home: ', this.props.location);
-
         let moviesToDisplay = [];
 
         if (typeof this.props.movies === 'undefined') {

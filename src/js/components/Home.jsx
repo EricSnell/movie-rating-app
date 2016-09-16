@@ -33,7 +33,10 @@ class Home extends React.Component {
                 imageURL = 'https://c1.staticflickr.com/1/186/382004453_f4b2772254.jpg';
             }
 
-            return <MovieTile key={movie.id} movieId={movie.id} title={movie.title} moviePoster={imageURL}/>
+            return <MovieTile key={movie.id}
+              movieId={movie.id}
+              title={movie.title}
+              moviePoster={imageURL}/>
         });
 
         return (

@@ -28,16 +28,25 @@ class MovieContainer extends React.Component {
      return null;
    }
 
+   // Since both the Home component and SearchResults components
+   // redirect here, we need to search through both.
+   let allMovies = this.props.movies.concat(this.props.searchResults || []);
+
    // Will get the id of the movie from the url
    const id = this.props.params.id;
 
-   // Generate the start of the poster URL
-   const imageURL = this.props.baseURL + '/' + this.props.posterSize + '/';
-
    // filters through the movies by the selected id
-   let movie = this.props.movies.filter((movie) => {
+   let movie = allMovies.filter((movie) => {
      return id === movie.id.toString();
    })[0];
+
+   // Start with a default image, if we have a poster_path generate the real url
+   let imageURL = 'https://c1.staticflickr.com/1/186/382004453_f4b2772254.jpg';
+
+   if (movie.poster_path) {
+       imageURL = this.props.baseURL + '/' + this.props.posterSize + '/' + movie.poster_path;
+   }
+
 
 
 
@@ -46,8 +55,8 @@ class MovieContainer extends React.Component {
         <h1 className="text-center">{movie.title}</h1>
         <div className="row">
           <img className="img-responsive col-md-2 col-md-offset-5 thumbnail"
-            src={imageURL + movie.poster_path}
-            alt={movie.title + " poster"} />
+            src={imageURL}
+            alt={movie.title + ' Poster'} />
         </div>
         <h3 className="text-center"><strong>Overview</strong></h3>
         <div className="row">
@@ -63,6 +72,7 @@ class MovieContainer extends React.Component {
 var mapStateToProps = (state, props) => {
   return {
     movies: state.movieList.movies,
+    searchResults: state.movieList.searchResults,
     posterSize: state.movieList.posterSize,
     baseURL: state.movieList.baseURL
   };

@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-
+import { Link, browserHistory } from 'react-router'
 /*-------------- FETCH ACTIONS ------------*/
 
 // Add New User
@@ -186,6 +186,7 @@ export const fetchFindMovie = (userInput) => {
         }
         return res.json();
       }).then((response) => {
+        // browserHistory.push('/search')
         return dispatch (
           fetchFindMovieSuccess(response.results)
         );

@@ -1,30 +1,27 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {browserHistory} from 'react-router'
 import * as actions from '../redux/actions'
 import MovieTile from './MovieTile'
 
-class Home extends React.Component {
+class searchResults extends React.Component {
     constructor(props) {
         super(props)
     }
 
     render() {
 
-        // Since this component handles both the popular title view
-        // and the search results. We have to make sure we display the
-        // right set of information.
-        console.log('Home: ', this.props.location);
-
         let moviesToDisplay = [];
 
-        if (typeof this.props.movies === 'undefined') {
+        // For some reason ! does not work!
+        if (typeof this.props.searchResults === 'undefined') {
             return null;
         }
 
         // @TODO: Move this map function to a seperate file so both home and searchResults
         // can use it or refactor the components so you don't need both home and
         // searchResults
-        moviesToDisplay = this.props.movies.map((movie) => {
+        moviesToDisplay = this.props.searchResults.map((movie) => {
             let imageURL = this.props.baseURL + this.props.posterSize + movie.poster_path;
 
             // Set a not found image, for the movies that do not have
@@ -40,7 +37,7 @@ class Home extends React.Component {
             <div>
                 <h1 className="text-center" style={{
                     "paddingBottom": "2%"
-                }}>Popular Titles</h1>
+                }}>Search Results</h1>
                 <div className="row">
                     {moviesToDisplay}
                 </div>
@@ -51,9 +48,9 @@ class Home extends React.Component {
 
 var mapStateToProps = (state, props) => {
     return {
-      movies: state.movieList.movies,
+      searchResults: state.movieList.searchResults,
       posterSize: state.movieList.posterSize,
       baseURL: state.movieList.baseURL};
 };
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(searchResults)

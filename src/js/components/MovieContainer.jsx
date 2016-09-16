@@ -22,7 +22,7 @@ class MovieContainer extends React.Component {
 
   render() {
 
-    // If movies have not be pulled from the API, return null.
+    // If movies have not been pulled from the API, return null.
     // There is nothing to render.
     if (!this.props.movies || this.props.movies.length === 0) {
      return null;

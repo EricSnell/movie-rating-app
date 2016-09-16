@@ -23,7 +23,7 @@ class Navigation extends React.Component {
       let movieSearch = this.props.searchText;
       this.props.dispatch(actions.fetchFindMovie(movieSearch));
       // Programically navigates using react-router
-      browserHistory.push('/')
+      browserHistory.push('/search')
     }
 
     onAddInput (event) {

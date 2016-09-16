@@ -12,6 +12,7 @@ import Home from './components/Home'
 import MovieContainer from './components/MovieContainer'
 import UserContainer from './components/UserContainer'
 import Navigation from './components/Navigation'
+import searchResults from './components/searchResults'
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,8 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         <Router history={browserHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
-                <Route path="/movie/:id" component={MovieContainer}/>
-                <Route path="/user/:id" component={UserContainer}/>
+                <Route path="search" component={searchResults}/>
+                <Route path="movie/:id" component={MovieContainer}/>
+                <Route path="user/:id" component={UserContainer}/>
             </Route>
         </Router>
     </Provider>, document.getElementById('app'))

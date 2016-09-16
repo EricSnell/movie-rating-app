@@ -14,6 +14,7 @@ import { combineReducers } from 'redux';
   },
   movieList: {
     movies: [], // Use for popular movies and add additional information pulled from server
+    searchResults: []
     baseURL: "",
     posterSize: ""
   },
@@ -76,7 +77,7 @@ const moviesReducer = (state = {}, action) => {
     case actions.FETCH_POSTER_BASEURL_SUCCESS:
       return { ...state, baseURL: action.posterBaseURL, posterSize: action.posterSize};
     case actions.FETCH_FIND_MOVIE_SUCCESS:
-      return { ...state, movies: action.searchResults}
+      return { ...state, searchResults: action.searchResults}
     default:
       return state;
     }

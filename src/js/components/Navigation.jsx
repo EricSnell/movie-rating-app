@@ -1,21 +1,27 @@
-import React from 'react'
+import React, { PropTypes as T } from 'react'
 import { connect } from 'react-redux'
+import AuthService from '../../utils/AuthService'
 import * as actions from '../redux/actions'
 import { Link, browserHistory } from 'react-router'
 
 class Navigation extends React.Component {
+  static propTypes = {
+    location: T.object,
+    auth: T.instanceOf(AuthService)
+  }
+
     constructor(props) {
         super(props)
-        this.signUp = this.signUp.bind(this);
+        // this.signUp = this.signUp.bind(this);
         this.onAddInput = this.onAddInput.bind(this);
         this.findMovie = this.findMovie.bind(this);
     }
 
-    signUp() {
-        if (!this.props.loggedIn) {
-            this.props.dispatch(actions.toggleLoginOverlay())
-        }
-    }
+    // signUp() {
+    //     if (!this.props.loggedIn) {
+    //         this.props.dispatch(actions.toggleLoginOverlay())
+    //     }
+    // }
 
     findMovie(event) {
       event.preventDefault();
@@ -38,7 +44,8 @@ class Navigation extends React.Component {
         if (this.props.loggedIn) {
             link = <Link to={'/user'}>My Profile</Link>
         }
-
+        console.log(this.props)
+        const { auth } = this.props
         return (
             <header>
                 <nav className="navbar navbar-default">
@@ -65,7 +72,7 @@ class Navigation extends React.Component {
                         <ul className="nav navbar-nav navbar-right" style={{
                             padding: "0 2% 0 2%"
                         }}>
-                            <li onClick={this.signUp}>{link}</li>
+                            <li onClick={auth.login.bind(this)}>Login</li>
                         </ul>
                     </div>
                 </nav>

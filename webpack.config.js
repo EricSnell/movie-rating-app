@@ -17,15 +17,17 @@ module.exports = {
         historyApiFallback: true
     },
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            exclude: /(node_modules)/,
-            loader: 'babel',
-            query: {
-                presets: ['es2015', 'react'],
-                plugins: ["transform-object-rest-spread"]
-            }
-        }]
+        loaders: [
+          {
+              test: /\.jsx?$/,
+              exclude: /(node_modules)/,
+              loader: 'babel',
+              query: {
+                  presets: ['es2015', 'stage-0', 'react'],
+                  plugins: ["transform-object-rest-spread"]
+              }
+          }
+        ]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']

@@ -23,6 +23,7 @@ class Navigation extends React.Component {
       let movieSearch = this.props.searchText;
       this.props.dispatch(actions.fetchFindMovie(movieSearch));
       // Programically navigates using react-router
+      // https://stackoverflow.com/questions/35706835/react-router-redirect-after-action-redux
       browserHistory.push('/search')
     }
 

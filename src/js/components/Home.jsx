@@ -25,7 +25,7 @@ class Home extends React.Component {
           if(!movie.poster_path) {
             imageURL = 'https://c1.staticflickr.com/1/186/382004453_f4b2772254.jpg';
           }
-          console.log(typeof movie.poster_path)
+
           return <MovieTile key={movie.id}
             movieId={movie.id}
             title={movie.title}
@@ -36,9 +36,9 @@ class Home extends React.Component {
     return (
       <div>
         <h1 className="text-center" style={{"paddingBottom": "2%"}}>Popular Titles</h1>
-        <ul className="row">
+        <div className="row">
           {movies || null}
-        </ul>
+        </div>
       </div>
     )
   }

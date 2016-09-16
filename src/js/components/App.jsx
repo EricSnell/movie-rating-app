@@ -19,7 +19,7 @@ class App extends React.Component {
                 <Navigation/>
                 <LoginOverlay/>
                 <TopFiveOverlay/>
-                <div>
+                <div className="container">
                     {this.props.children}
                 </div>
             </div>

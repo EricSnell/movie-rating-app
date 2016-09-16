@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
 class Navigation extends React.Component {
     constructor(props) {
@@ -21,7 +21,9 @@ class Navigation extends React.Component {
       event.preventDefault();
       //Dispatch action (fetchMovieInfo) to make API GET request for movie title
       let movieSearch = this.props.searchText;
-      this.props.dispatch(actions.fetchFindMovie(movieSearch))
+      this.props.dispatch(actions.fetchFindMovie(movieSearch));
+      // Programically navigates using react-router
+      browserHistory.push('/')
     }
 
     onAddInput (event) {

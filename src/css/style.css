@@ -1,13 +1,36 @@
+body {
+  color: #FFF;
+  background-color: #141218;
+}
+
+.navbar {
+  background-color: yellow;
+}
 
 
-/*--- Navigation Header ---*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*--- Navigation Header
 .nav-bar {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #34495e;
+  background-color: #B9090B;
+  border-color: #210000;
 }
+
+
 .nav-bar > li {
   display: inline-block;
   color: white;
@@ -21,7 +44,7 @@
   cursor: pointer;
 }
 
-
+---*/
 
 
 

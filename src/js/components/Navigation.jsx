@@ -41,13 +41,13 @@ class Navigation extends React.Component {
 
         return (
             <header>
-                <nav className="navbar navbar-default">
+                <nav className="navbar navbar-default" >
                     <div className="container">
                         <Link className="navbar-left" to={'/'}>
                             <img
-                              src="http://demo.vuchkov.biz/theme2/img/blank_logo.gif"
+                              src="https://s10.postimg.org/unrwc5x21/logo.png"
                               alt="logo"
-                              style={{maxWidth:"25%", maxHeight:"auto"}}
+                              style={{maxWidth:"20%", maxHeight:"auto", marginBottom:"5px"}}
                               />
                         </Link>
                         <form className="navbar-form navbar-right"
